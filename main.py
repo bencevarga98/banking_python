@@ -1,5 +1,7 @@
+#create dictionary to store accounts 
 acc_dict = dict()
 
+#create class for accounts
 class Account:
     def __init__(self, name, account_number):
         self.full_name = name
@@ -23,7 +25,8 @@ class Account:
     
     def __del__(self):
         print("Object deleted")
-      
+
+#While loop to run the program       
 while True:
     task = int(input("Please enter a number (1 create, 2 add, 3 withdraw, 4 inquire, 5 delete, 6 quit"))
     if task == 6:
