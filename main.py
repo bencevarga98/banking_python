@@ -1,0 +1,63 @@
+acc_dict = dict()
+
+class Account:
+    def __init__(self, name, account_number):
+        self.full_name = name
+        self.acc_no = account_number
+        self.balance = 0
+    
+    def get_data(self):
+        print( self.full_name, self.acc_no, self.balance)
+    
+    def add(self, amount):
+        self.balance += amount
+    
+    def withdraw(self, amount):
+        if amount > self.balance:
+            print("Not enough funds")
+        else:
+            self.balance -= amount
+    
+    def inquire(self):
+        return f'Your balance is {self.balance}'
+    
+    def __del__(self):
+        print("Object deleted")
+      
+while True:
+    task = int(input("Please enter a number (1 create, 2 add, 3 withdraw, 4 inquire, 5 delete, 6 quit"))
+    if task == 6:
+        break
+    elif task == 1:
+        name_input = input("Please enter your name:")
+        an_input = int(input("Please enter your account number:"))
+        acc_dict[an_input] = Account(name_input, an_input)
+    elif task == 2:
+        an_input = int(input("Please enter your account number:"))
+        amount_input = int(input("Please enter the amount you want to add:"))
+        try:
+            acc_dict[an_input].add(amount_input)
+        except KeyError:
+            print("Make sure that the account number exists!")
+            
+    elif task == 3:
+        an_input = int(input("Please enter your account number:"))
+        amount_input = int(input("Please enter the amount you want to withdraw:"))
+        try:
+            acc_dict[an_input].withdraw(amount_input)
+        except KeyError:
+            print("Make sure that the account number exists!")
+        
+    elif task == 4:
+        an_input = int(input("Please enter your account number:"))
+        try:
+            print(acc_dict[an_input].inquire())
+        except KeyError:
+            print("Make sure that the account number exists!")
+        
+    elif task == 5:
+        an_input = int(input("Please enter your account number:"))
+        try:
+            del acc_dict[an_input]
+        except KeyError:
+            print("Make sure that the account number exists!")
